@@ -1,14 +1,20 @@
-var globalCounter = 0;
-var tbody = document.getElementById('tbody');
+var table = document.querySelector("tbody");
+var dataset = dataSet;
+
+table.innerHTML = "";
 
 for (var i = 0; i < dataSet.length; i++) {
-    var tr = "<tr>";
-    var th = "<th>"
+    
+    var data = dataset[i];
+    var headers = Object.keys(data);
+    var row = table.insertRow(i);
 
 
-    /* Must not forget the $ sign */
-    tr += "<td>" + dataSet[i].datetime + "</td>" + "<td>" + dataSet[i].city + "</td>" + dataSet[i].state + "</td>" + dataSet[i].country + "</td>" + dataSet[i].shape + "</td>" + dataSet[i].durationMinutes + "</td>" + dataSet[i].comments + "</td></tr>";
+    for (var j = 0; j < headers.length; j++) {
 
-    /* We add the table row to the table body */
-    tbody.innerHTML += tr;
+        var header = headers[j];
+        var cell = row.insertCell(j);
+        
+        cell.innerText = data[header];
+    }
 }
